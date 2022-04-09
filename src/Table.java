@@ -2,9 +2,31 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Table {
+      static class Punishment{
+             private boolean flag;
+            final private int cardToTake;
+            final private int direction;
+
+            public Punishment(boolean flag, int cardToTake,int direction) {
+                this.flag = flag;
+                this.cardToTake = cardToTake;
+                this.direction=direction;
+
+        }
+
+          public boolean isFlag() {
+              return flag;
+          }
+
+          public int getCardToTake() {
+              return cardToTake;
+          }
+
+          public int getDirection() {
+              return direction;
+          }
+      }
     private ArrayList<Card> cardsOnTable = new ArrayList<>();
-    private int anotherCard;
-    private boolean flag=true;
     Scanner scanner = new Scanner(System.in);
 
     public ReturnPlayerAndCard dealTheCards(int playerCount, ArrayList<Card> cards, ArrayList<Player> players) {
@@ -33,8 +55,66 @@ public class Table {
 
     }
 
-    public boolean letsPlay(ArrayList<Card> cardsOnTable, Card card, Player player, boolean flag, ArrayList<Card> remainingCards) {
+    public Punishment letsPlay(ArrayList<Card> cardsOnTable, Card card, Player player, boolean flag, ArrayList<Card> remainingCards) {
+        if(cardsOnTable.get(cardsOnTable.size()-1).getType().equals("Stop") && flag){
+            System.out.println(flag);
+            System.out.println("queue should be skipped");
+            flag=false;
 
+            return new Punishment(flag,0,0);
 
+        }
+
+        if(cardsOnTable.get(cardsOnTable.size()-1).getType().equals("ChangeDirection") && flag){
+            flag=false;
+            return new Punishment(flag,0,1);
+        }
+
+if(!cardsOnTable.get(cardsOnTable.size()-1).isStart() && flag){
+    if(card.getType().equals(cardsOnTable.get(cardsOnTable.size()-1).getType())){
+        cardsOnTable.add(card);
+        player.getCardsInHand().remove(card);
+        return new Punishment(card.isFlag(),0,0);
+    }
+    else {
+        System.out.println("Choose another card(1) or do something (2)");
+        switch (scanner.nextInt()){
+            case 1:
+                this.letsPlay(cardsOnTable,player.putCard(),player,cardsOnTable.get(cardsOnTable.size()-1).isFlag(),remainingCards);
+                break;
+            case 2:
+                switch (cardsOnTable.get(cardsOnTable.size()-1).getType()){
+                    case "+2":
+                    case "ChangeColour + 4":
+                        break;
+                }
+                return new Punishment(false,0,0);
+        }
 
     }
+}
+else {
+    if(cardsOnTable.get(cardsOnTable.size()-1).getColour().equals(card.getColour())||cardsOnTable.get(cardsOnTable.size()-1).getType().equals(card.getType())||card.getColour().equals("Black")){
+        cardsOnTable.add(card);
+        player.getCardsInHand().remove(card);
+        return new Punishment(card.isFlag(),0,0);
+    }
+    else {
+        System.out.println("Choose another card(1) or take one card(2)");
+        switch (scanner.nextInt()){
+            case 1:
+                this.letsPlay(cardsOnTable,player.putCard(),player,cardsOnTable.get(cardsOnTable.size()-1).isFlag(),remainingCards);
+                break;
+            case 2:
+                player.getCardsInHand().add(remainingCards.get(remainingCards.size()-1));
+                remainingCards.remove(remainingCards.size()-1);
+                return new Punishment(false,0,0);
+        }
+
+    }
+
+}
+
+return new Punishment(false,0,0);
+    }
+}

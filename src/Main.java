@@ -26,23 +26,25 @@ public class Main {
         karty=deck.shuffleCard(karty);
 
         game= table.dealTheCards(peopleCount,karty,players);
-        System.out.println("on the table is " + game.cardOnTable);
+        System.out.println("On the table is " + game.cardOnTable);
         System.out.println("First player's card is "+game.players.get(0).getCardsInHand());
         System.out.println("Second player's card is "+game.players.get(1).getCardsInHand());
-        System.out.println(game.cardOnTable);
 //        table.letsPlay(game.cardOnTable,players.get(0).putCard(),players.get(0));
 //        System.out.println("on the table is " + game.cardOnTable);
 //        System.out.println("After put card you have"+ game.players.get(0).getCardsInHand());
         int i=0;
-        boolean x=true;
+        Table.Punishment x= new Table.Punishment(true,0,0);
         while(true){
             System.out.println("on the table is " + game.cardOnTable);
 
-            x=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),x,game.card);
+            x=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),x.isFlag(),game.card);
+
             System.out.println("on the table is " + game.cardOnTable);
             i++;
             if(i>1){
                 i=0;
             }}
+
+
     }
 }
