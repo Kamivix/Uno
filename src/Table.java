@@ -5,7 +5,7 @@ public class Table {
       static class Punishment{
              private boolean flag;
             final private int cardToTake;
-            final private int direction;
+             private int direction;
 
             public Punishment(boolean flag, int cardToTake,int direction) {
                 this.flag = flag;
@@ -65,16 +65,22 @@ public class Table {
 
         }
 
-        if(cardsOnTable.get(cardsOnTable.size()-1).getType().equals("ChangeDirection") && flag){
-            flag=false;
-            return new Punishment(flag,0,1);
-        }
+//        if(cardsOnTable.get(cardsOnTable.size()-1).getType().equals("ChangDirection")  ){
+//            flag=false;
+//            return new Punishment(flag,0,0);
+//        }
 
 if(!cardsOnTable.get(cardsOnTable.size()-1).isStart() && flag){
+    int direct=0;
     if(card.getType().equals(cardsOnTable.get(cardsOnTable.size()-1).getType())){
+        if(card.getType().equals("ChangDirection")){
+            direct=1;
+            System.out.println("Direct = 1");
+        }
         cardsOnTable.add(card);
         player.getCardsInHand().remove(card);
-        return new Punishment(card.isFlag(),0,0);
+
+        return new Punishment(card.isFlag(),0,direct);
     }
     else {
         System.out.println("Choose another card(1) or do something (2)");
@@ -115,6 +121,6 @@ else {
 
 }
 
-return new Punishment(false,0,0);
+return new Punishment(false,0,1);
     }
 }
