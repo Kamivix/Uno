@@ -10,7 +10,12 @@ public class Card {
         this.colour = colour;
         this.type = type;
         this.start = start;
-        this.flag=!isStart();
+        if(this.type=="ChangDirection"){
+            this.flag=false;
+        }
+        else{
+
+        this.flag=!isStart();}
     }
 
     public boolean isStart() {
