@@ -2,30 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Table {
-      static class Punishment{
-             private boolean flag;
-            final private int cardToTake;
-             private int direction;
 
-            public Punishment(boolean flag, int cardToTake,int direction) {
-                this.flag = flag;
-                this.cardToTake = cardToTake;
-                this.direction=direction;
-
-        }
-
-          public boolean isFlag() {
-              return flag;
-          }
-
-          public int getCardToTake() {
-              return cardToTake;
-          }
-
-          public int getDirection() {
-              return direction;
-          }
-      }
     private ArrayList<Card> cardsOnTable = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 

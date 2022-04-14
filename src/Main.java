@@ -33,7 +33,7 @@ public class Main {
 //        System.out.println("on the table is " + game.cardOnTable);
 //        System.out.println("After put card you have"+ game.players.get(0).getCardsInHand());
         int i=0;
-        Table.Punishment x= new Table.Punishment(true,0,1);
+        Punishment x= new Punishment(true,0,1);
         while(true){
             System.out.println("On the table is " + game.cardOnTable);
             System.out.println(i+1+ " player");
