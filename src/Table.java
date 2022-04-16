@@ -32,10 +32,9 @@ public class Table {
 
     }
 
-    public Punishment letsPlay(ArrayList<Card> cardsOnTable, Card card, Player player, boolean flag, ArrayList<Card> remainingCards) {
+    public Punishment letsPlay(ArrayList<Card> cardsOnTable, Card card, Player player, boolean flag, ArrayList<Card> remainingCards,int cardToTake) {
 
         if(cardsOnTable.get(cardsOnTable.size()-1).getType().equals("Stop") && flag){
-            System.out.println(flag);
             System.out.println("queue should be skipped");
             flag=false;
 
@@ -53,20 +52,28 @@ public class Table {
                 else{
                     direct=0;
                 }
+                if(card.getType().equals("+2")){
+                    cardToTake+=2;
+                    System.out.println(cardToTake+ " card to take");
+                }
                 cardsOnTable.add(card);
                 player.getCardsInHand().remove(card);
 
-                return new Punishment(card.isFlag(),0,direct);
+                return new Punishment(card.isFlag(),cardToTake,direct);
             }
             else {
                 System.out.println("Choose another card(1) or do something (2)");
                 switch (scanner.nextInt()){
                     case 1:
-                        this.letsPlay(cardsOnTable,player.putCard(),player,cardsOnTable.get(cardsOnTable.size()-1).isFlag(),remainingCards);
+                        this.letsPlay(cardsOnTable,player.putCard(),player,cardsOnTable.get(cardsOnTable.size()-1).isFlag(),remainingCards,cardToTake);
                         break;
                     case 2:
                         switch (cardsOnTable.get(cardsOnTable.size()-1).getType()){
                             case "+2":
+                                for(int i=0;i<cardToTake;++i){
+                                player.getCardsInHand().add(remainingCards.get(remainingCards.size()-1));
+                                remainingCards.remove(remainingCards.size()-1);}
+
                             case "ChangeColour + 4":
                                 break;
                         }
@@ -84,16 +91,21 @@ public class Table {
                 else{
                     direct=0;
                 }
+
+                if(card.getType().equals("+2")){
+                    cardToTake+=2;
+                    System.out.println(cardToTake+ " card to take");
+                }
                 cardsOnTable.add(card);
                 player.getCardsInHand().remove(card);
 
-                return new Punishment(card.isFlag(),0,direct);
+                return new Punishment(card.isFlag(),cardToTake,direct);
             }
             else {
                 System.out.println("Choose another card(1) or take one card(2)");
                 switch (scanner.nextInt()){
                     case 1:
-                        this.letsPlay(cardsOnTable,player.putCard(),player,cardsOnTable.get(cardsOnTable.size()-1).isFlag(),remainingCards);
+                        this.letsPlay(cardsOnTable,player.putCard(),player,cardsOnTable.get(cardsOnTable.size()-1).isFlag(),remainingCards,cardToTake);
                         break;
                     case 2:
                         player.getCardsInHand().add(remainingCards.get(remainingCards.size()-1));

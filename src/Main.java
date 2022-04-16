@@ -30,13 +30,14 @@ public class Main {
         System.out.println("Second player's card is "+game.players.get(1).getCardsInHand());
         System.out.println("Third player's card is "+game.players.get(2).getCardsInHand());
 int counterToChangeDirection=1;
+int cardToTake=0;
         int i=0;
         Punishment x= new Punishment(true,0,1);
         while(true){
             System.out.println("On the table is " + game.cardOnTable);
             System.out.println(i+1+ " player");
-            x=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),x.isFlag(),game.card);
-
+            x=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),x.isFlag(),game.card,cardToTake);
+cardToTake=x.getCardToTake();
            counterToChangeDirection+= x.getDirection();
 
 
