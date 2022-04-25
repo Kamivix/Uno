@@ -1,12 +1,14 @@
 public class Punishment {
-        private boolean flag;
+        final private boolean flag;
         final private int cardToTake;
-        private int direction;
+        final private int direction;
+         private boolean over;
 
-        public Punishment(boolean flag, int cardToTake,int direction) {
+        public Punishment(boolean flag, int cardToTake,int direction,boolean over) {
             this.flag = flag;
             this.cardToTake = cardToTake;
             this.direction=direction;
+            this.over=over;
 
         }
 
@@ -22,4 +24,7 @@ public class Punishment {
             return direction;
         }
 
+    public boolean isOver() {
+        return over;
+    }
 }

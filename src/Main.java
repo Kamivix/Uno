@@ -32,13 +32,13 @@ public class Main {
 int counterToChangeDirection=1;
 int cardToTake=0;
         int i=0;
-        Punishment x= new Punishment(true,0,1);
+        Punishment x= new Punishment(true,0,1,false);
         while(true){
             System.out.println("On the table is " + game.cardOnTable);
             System.out.println(i+1+ " player");
             x=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),x.isFlag(),game.card,cardToTake);
-cardToTake=x.getCardToTake();
-           counterToChangeDirection+= x.getDirection();
+            cardToTake=x.getCardToTake();
+            counterToChangeDirection+= x.getDirection();
 
 
             if(counterToChangeDirection%2==0){
@@ -53,6 +53,12 @@ cardToTake=x.getCardToTake();
                     i=0;
                 }
             }
+            if(x.isOver()){
+                System.out.println("Player" + i+1 +" Win");
+                break;
+
+            }
+
             }
 
 

@@ -1,5 +1,5 @@
 public class Card {
-    final private String colour;
+     private String colour;
     final private String type;
     final private boolean start;
     final private boolean flag;
@@ -10,12 +10,16 @@ public class Card {
         this.colour = colour;
         this.type = type;
         this.start = start;
-        if(this.type=="ChangDirection"){
+        if(this.type.equals("ChangDirection")|| (this.colour.equals("Black"))&& this.type!="ChangeColour + 4"){
             this.flag=false;
         }
         else{
 
         this.flag=!isStart();}
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     public boolean isStart() {
