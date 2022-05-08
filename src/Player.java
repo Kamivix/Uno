@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Player {
     final private String name;
-    private ArrayList<Card> cardsInHand = new ArrayList<>();
+    final private ArrayList<Card> cardsInHand = new ArrayList<>();
     final private Scanner scanner=new Scanner(System.in);
 
     public Player(String name) {

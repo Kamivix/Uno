@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Table {
-    private int direct;
-    private ArrayList<Card> cardsOnTable = new ArrayList<>();
+
+    final private ArrayList<Card> cardsOnTable = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     Scanner scanner2 = new Scanner(System.in);
 
@@ -34,7 +34,7 @@ public class Table {
     }
 
     public Punishment letsPlay(ArrayList<Card> cardsOnTable, Card card, Player player, boolean flag, ArrayList<Card> remainingCards,int cardToTake) {
-
+         int direct;
         if(cardsOnTable.get(cardsOnTable.size()-1).getType().equals("Stop") && flag){
             System.out.println("queue should be skipped");
             flag=false;

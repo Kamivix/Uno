@@ -27,12 +27,12 @@ public class CardsFlow {
             if(counterToChangeDirection%2==0){
                 --i;
                 if(i<0){
-                    i=2;
+                    i=players.size()-1;
                 }
             }
             else{
                 ++i;
-                if(i>2){
+                if(i> players.size()-1){
                     i=0;
                 }
             }

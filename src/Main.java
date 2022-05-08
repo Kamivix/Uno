@@ -25,10 +25,6 @@ public class Main {
 
         karty=deck.shuffleCard(karty);
         game= table.dealTheCards(peopleCount,karty,players);
-        System.out.println("First player's card is "+game.players.get(0).getCardsInHand());
-        System.out.println("Second player's card is "+game.players.get(1).getCardsInHand());
-        System.out.println("Third player's card is "+game.players.get(2).getCardsInHand());
-
 
 CardsFlow cardsFlow= new CardsFlow(table,game,players);
 cardsFlow.controllCardFlow();
