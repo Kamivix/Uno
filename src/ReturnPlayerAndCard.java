@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class ReturnPlayerAndCard {
 
-    ArrayList<Player> players;
-    ArrayList<Card> card;
-    ArrayList<Card> cardOnTable;
-    public ReturnPlayerAndCard(ArrayList<Player> players, ArrayList<Card> card,ArrayList<Card> cardOnTable) {
+    List<Player> players;
+    List<Card> card;
+    List<Card> cardOnTable;
+    public ReturnPlayerAndCard(List<Player> players, List<Card> card, List<Card> cardOnTable) {
         this.players = players;
         this.card = card;
         this.cardOnTable=cardOnTable;

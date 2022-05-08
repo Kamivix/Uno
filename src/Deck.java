@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Deck {
 
 
-    public ArrayList<Card> createDeck(){
-        ArrayList<Card> deck=new ArrayList<>();
+    public List<Card> createDeck(){
+        List<Card> deck=new ArrayList<>();
         int x;
         for(int i=0;i<19;++i) {
             x=i;
@@ -44,7 +45,7 @@ public class Deck {
         return deck;
     }
 
-    public ArrayList<Card> shuffleCard(ArrayList<Card> cards){
+    public List<Card> shuffleCard(List<Card> cards){
         Collections.shuffle(cards);
         return cards;
     }

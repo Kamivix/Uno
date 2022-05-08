@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Table {
 
-    final private ArrayList<Card> cardsOnTable = new ArrayList<>();
+    final private List<Card> cardsOnTable = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     Scanner scanner2 = new Scanner(System.in);
 
-    public ReturnPlayerAndCard dealTheCards(int playerCount, ArrayList<Card> cards, ArrayList<Player> players) {
+    public ReturnPlayerAndCard dealTheCards(int playerCount, List<Card> cards, List<Player> players) {
         final int cardAtBeginning = 7;
 
         for (int i = 0; i < cardAtBeginning; ++i) {
@@ -36,7 +36,7 @@ public class Table {
 
     public Punishment letsPlay(List<Card> cardsOnTable, Card card, Player player, boolean flag, List<Card> remainingCards, int cardToTake) {
         int direct=0;
-        boolean stop=false;
+        boolean stop;
 
 
         if (card != null) {
@@ -45,8 +45,6 @@ public class Table {
                     stop = card.getType().equals("Stop");
                     if (card.getType().equals("ChangDirection")) {
                         direct = 1;
-                    } else {
-                        direct = 0;
                     }
                     if (card.getType().equals("+2")) {
                         cardToTake += 2;
@@ -59,9 +57,7 @@ public class Table {
                     }
                     cardsOnTable.add(card);
                     player.getCardsInHand().remove(card);
-                    if (player.getCardsInHand().size() == 1) {
-                        System.out.println("Uno!");
-                    }
+
                     if (player.getCardsInHand().size() == 0) {
                         System.out.println("You win");
                         return new Punishment(false, 0, 0, true,false);
@@ -161,7 +157,7 @@ public class Table {
             while (i<cardToTake);
 
 
-            return new Punishment(false, 0, direct, false, stop);
+            return new Punishment(false, 0, direct, false, false);
         }
     }
 

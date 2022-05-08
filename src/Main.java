@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,7 @@ public class Main {
             players.add(new Player(scanner.nextLine()));
         }
 
-        ArrayList<Card> karty=deck.createDeck();
+        List<Card> karty=deck.createDeck();
 
         karty=deck.shuffleCard(karty);
         game= table.dealTheCards(peopleCount,karty,players);

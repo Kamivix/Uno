@@ -5,7 +5,7 @@ public class CardsFlow {
         this.table=table;
         this.players=players;
         this.game=game;
-    };
+    }
     int counterToChangeDirection=1;
     int cardToTake=0;
     boolean shouldStop=false;

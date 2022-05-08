@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Player {
     final private String name;
-    final private ArrayList<Card> cardsInHand = new ArrayList<>();
+    final private List<Card> cardsInHand = new ArrayList<>();
     final private Scanner scanner=new Scanner(System.in);
 
     public Player(String name) {
@@ -15,13 +16,11 @@ public class Player {
 
     }
 
-    public ArrayList<Card> getCardsInHand() {
+    public List<Card> getCardsInHand() {
         return cardsInHand;
     }
 
-    public String getName() {
-        return name;
-    }
+
 
     public Card putCard(){
         for (int i=0;i< cardsInHand.size();++i){
