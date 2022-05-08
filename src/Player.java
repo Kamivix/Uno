@@ -29,7 +29,14 @@ public class Player {
             System.out.println("Your"+ " " + temp +" " +"card is:"+" "+ cardsInHand.get(i));
 
         }
+
         System.out.println("Choose card:");
-        return cardsInHand.get(scanner.nextInt()-1);
+        System.out.println("If you have no card choose 0");
+        int choose = scanner.nextInt();
+        if(choose==0){
+            scanner.nextLine();
+            return null;
+        }
+        return cardsInHand.get(choose-1);
     }
 }

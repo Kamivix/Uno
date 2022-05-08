@@ -8,6 +8,7 @@ public class CardsFlow {
     };
     int counterToChangeDirection=1;
     int cardToTake=0;
+    boolean shouldStop=false;
     int i=0;
     Table table;
     ReturnPlayerAndCard game;
@@ -15,15 +16,26 @@ public class CardsFlow {
 
     public void controllCardFlow(){
 
-        Punishment x= new Punishment(true,0,1,false);
+        Punishment punishment= new Punishment(true,0,1,false,false);
         while(true){
             System.out.println("On the table is " + game.cardOnTable);
             System.out.println(i+1+ " player");
-            x=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),x.isFlag(),game.card,cardToTake);
-            cardToTake=x.getCardToTake();
-            counterToChangeDirection+= x.getDirection();
-
-
+            punishment=table.letsPlay(game.cardOnTable,players.get(i).putCard(),players.get(i),punishment.isFlag(),game.card,cardToTake);
+            cardToTake=punishment.getCardToTake();
+            counterToChangeDirection+= punishment.getDirection();
+shouldStop=punishment.isStop();
+if(shouldStop && counterToChangeDirection%2==0){
+    --i;
+    if(i<0){
+        i=players.size()-1;
+    }
+}
+else if(counterToChangeDirection%2!=0 &&shouldStop ){
+    ++i;
+    if(i> players.size()-1){
+        i=0;
+    }
+}
             if(counterToChangeDirection%2==0){
                 --i;
                 if(i<0){
@@ -36,7 +48,7 @@ public class CardsFlow {
                     i=0;
                 }
             }
-            if(x.isOver()){
+            if(punishment.isOver()){
                 System.out.println("Player" + i +" Win");
                 break;
 

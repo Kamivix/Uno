@@ -10,7 +10,7 @@ public class Card {
         this.colour = colour;
         this.type = type;
         this.start = start;
-        if(this.type.equals("ChangDirection")|| (this.colour.equals("Black"))&& this.type!="ChangeColour + 4"){
+        if(this.type.equals("ChangDirection")|| (this.colour.equals("Black"))&& !this.type.equals("ChangeColour + 4")||this.type.equals("Stop")){
             this.flag=false;
         }
         else{
